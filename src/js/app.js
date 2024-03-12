@@ -3,13 +3,61 @@ App = {
   contracts: {},
 
   init: function() {
+    console.log('step1')
     return App.initWeb3();
   },
 
-  initWeb3: function() {
+  initWeb3: async function() {
+    console.log('step2')
     // Initialize web3 and set the provider to the testRPC.
+
+    // if (typeof window.ethereum !== 'undefined') {
+    //   web3 = new Web3(window.ethereum);
+    //   try {
+    //     // Request account access if needed
+    //     await window.ethereum.enable();
+    //     // Acccounts now exposed
+    //   } catch (error) {
+    //     // User denied account access...
+    //   }
+    // } else {
+    //    // set the provider you want from Web3.providers
+    //    App.web3Provider = new Web3.providers.HttpProvider('http://127.0.0.1:8545');
+    //    web3 = new Web3(App.web3Provider);
+    // }
+
+    // if (typeof window.ethereum !== 'undefined') {
+    //   web3 = new Web3(window.ethereum);
+    //   try {
+    //     // Request account access
+    //     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    //     // Accounts now exposed, use the first account
+    //     const account = accounts[0];
+    //   } catch (error) {
+    //     // User denied account access or an error occurred
+    //     console.error('User denied account access or an error occurred:', error);
+    //   }
+    // } else {
+    //   // Warn the user that they need to install MetaMask
+    //   console.error('Please install MetaMask!');
+    //   // App.web3Provider = new Web3.providers.HttpProvider('http://127.0.0.1:8545');
+    //   //  web3 = new Web3(App.web3Provider);
+    // }
+
+
+    // if (!typeof web3 !== 'undefined') {
+    //   App.web3Provider = window.ethereum;
+    //   web3 = new Web3(window.ethereum);
+
+    //   console.log(App.web3Provider)
+    // } else {
+    //   // set the provider you want from Web3.providers
+    //   App.web3Provider = new Web3.providers.HttpProvider('http://127.0.0.1:8545');
+    //   web3 = new Web3(App.web3Provider);
+    // }
+
     if (!typeof web3 !== 'undefined') {
-      // App.web3Provider = web3.currentProvider;
+
       App.web3Provider =window.ethereum;
       // web3 = new Web3(web3.currentProvider);
       web3 = new Web3(window.ethereum);
@@ -19,18 +67,26 @@ App = {
       App.web3Provider = new Web3.providers.HttpProvider('http://127.0.0.1:8545');
       web3 = new Web3(App.web3Provider);
     }
+    console.log('step3')
 
     return App.initContract();
   },
 
   initContract: function() {
-    $.getJSON('SOCToken.json', function(data) {
+    console.log('step4')
+    $.getJSON('SOCToken.json', function(message) {
+      console.log('message: '+message)
       // Get the necessary contract artifact file and instantiate it with truffle-contract.
-      var MyTokenArtifact = data;
+      var MyTokenArtifact = message;
       App.contracts.MyToken = TruffleContract(MyTokenArtifact);
 
       // Set the provider for our contract.
-      App.contracts.MyToken.setProvider(App.web3Provider);
+      if (window.ethereum) {
+        App.contracts.MyToken.setProvider(App.web3Provider);
+      } else {
+        console.error("Ethereum provider not found. Install MetaMask or another wallet provider.");
+      }
+      // App.contracts.MyToken.setProvider(App.web3Provider);
 
       // Use our contract to retrieve and mark the adopted pets.
       return App.getBalances();

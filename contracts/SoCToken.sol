@@ -12,7 +12,7 @@ contract SOCToken is ERC20 {
         "This token is created with love and friendship so that it represents long lasting";
     string public _symbol = "SOC";
     string public _imgURL =
-        "https://gateway.pinata.cloud/ipfs/QmYsTtGKMpUjuCLC7wXf65BXhSytobiAzprEywvTYT3NP2";
+        "https://pink-glamorous-cuckoo-175.mypinata.cloud/ipfs/QmYsTtGKMpUjuCLC7wXf65BXhSytobiAzprEywvTYT3NP2";
     uint8 public decimals = 4;
     uint256 public INITIAL_SUPPLY = 100000000000;
 

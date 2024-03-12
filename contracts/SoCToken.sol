@@ -6,15 +6,15 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 /**
  * @title Ronnie Token Contract
  */
-contract SoCToken is ERC20 {
-    string public _name = "SoCToken";
+contract SOCToken is ERC20 {
+    string public _name = "SOCToken";
     string public _description =
         "This token is created with love and friendship so that it represents long lasting";
     string public _symbol = "SOC";
     string public _imgURL =
-        "https://gateway.pinata.cloud/ipfs/QmSLbdzYBUJqpmdq2pC9SCfcaPPuSyEqKXpdVH41zkKb4K";
-    uint8 public decimals = 2;
-    uint256 public INITIAL_SUPPLY = 10000000;
+        "https://gateway.pinata.cloud/ipfs/QmYsTtGKMpUjuCLC7wXf65BXhSytobiAzprEywvTYT3NP2";
+    uint8 public decimals = 4;
+    uint256 public INITIAL_SUPPLY = 100000000000;
 
     constructor() public {
         _mint(msg.sender, INITIAL_SUPPLY);

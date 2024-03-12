@@ -24,7 +24,7 @@ App = {
   },
 
   initContract: function() {
-    $.getJSON('RonnieToken.json', function(data) {
+    $.getJSON('SOCToken.json', function(data) {
       // Get the necessary contract artifact file and instantiate it with truffle-contract.
       var MyTokenArtifact = data;
       App.contracts.MyToken = TruffleContract(MyTokenArtifact);

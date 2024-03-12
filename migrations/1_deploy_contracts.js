@@ -1,7 +1,7 @@
-var RonnieToken = artifacts.require("RonnieToken");
+var SOCToken = artifacts.require("SOCToken");
 
 module.exports = function(deployer) {
-  deployer.deploy(RonnieToken);
+  deployer.deploy(SOCToken);
 };
 
 // const WSTToken = artifacts.require("WSTToken");

@@ -44,6 +44,8 @@
 require('dotenv').config();
 const { MNEMONIC, PROJECT_ID } = process.env;
 
+console.log(MNEMONIC)
+
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 module.exports = {
@@ -95,6 +97,16 @@ module.exports = {
       timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
       skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
     },
+
+    sepolia: {
+      provider: () => new HDWalletProvider(MNEMONIC,`https://eth-sepolia.g.alchemy.com/v2/${PROJECT_ID}`),
+      network_id: 11155111, // Sepolia's network ID
+      // gas: 4000000, // Adjust the gas limit as per your requirements
+      // gasPrice: 10000000000, // Set the gas price to an appropriate value
+      confirmations: 2, // Set the number of confirmations needed for a transaction
+      timeoutBlocks: 200, // Set the timeout for transactions
+      skipDryRun: true // Skip the dry run option
+     }
     //
     // Useful for private networks
     // private: {
@@ -113,14 +125,14 @@ module.exports = {
   compilers: {
     solc: {
       version: "0.5.5",      // Fetch exact version from solc-bin (default: truffle's version)
-      docker: false,        // Use "0.5.1" you've installed locally with docker (default: false)
-      settings: {          // See the solidity docs for advice about optimization and evmVersion
-       optimizer: {
-         enabled: false,
-         runs: 200
-       },
-       evmVersion: "byzantium"
-      }
+      // docker: false,        // Use "0.5.1" you've installed locally with docker (default: false)
+      // settings: {          // See the solidity docs for advice about optimization and evmVersion
+      //  optimizer: {
+      //    enabled: false,
+      //    runs: 200
+      //  },
+      //  evmVersion: "byzantium"
+      // }
     }
   },
 

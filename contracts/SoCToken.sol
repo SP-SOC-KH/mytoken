@@ -4,15 +4,13 @@ pragma solidity >=0.5.0;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 /**
- * @title Ronnie Token Contract
+ * @title SOC Token Contract
  */
 contract SOCToken is ERC20 {
     string public _name = "SOCToken";
-    string public _description =
-        "This token is created with love and friendship so that it represents long lasting";
+    string public _description = "This token is created for SOC";
     string public _symbol = "SOC";
-    string public _imgURL =
-        "https://pink-glamorous-cuckoo-175.mypinata.cloud/ipfs/QmYsTtGKMpUjuCLC7wXf65BXhSytobiAzprEywvTYT3NP2";
+    string public _imgURL = "https://pink-glamorous-cuckoo-175.mypinata.cloud/ipfs/QmYsTtGKMpUjuCLC7wXf65BXhSytobiAzprEywvTYT3NP2";
     uint8 public decimals = 4;
     uint256 public INITIAL_SUPPLY = 100000000000;
 

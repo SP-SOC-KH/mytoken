@@ -2,69 +2,99 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Token - Wallet</title>
-  <!-- Bootstrap -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Ticket - Wallet</title>
   <!-- Libraries BS, JQuery, Web3, Truffle-Contract, App -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="js/web3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/
+/web3.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/truffle-contract@4.0.31/dist/truffle-contract.min.js"></script>
   <script src="js/app.js"></script>
-
+  <style>
+    img#MyTokenImage {
+      margin-top: 1em;
+  }
+  div#loading{
+    margin: 0 auto;
+    display: none;
+    width: 200px;
+    height: 200px;
+    background: url("img/loading.gif") no-repeat;
+  }
+  .card:last-child{
+    margin-bottom: 70px;
+  }
+  </style>
 </head>
+
 
 <body>
   <header class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid justify-content-center">
       <a class="navbar-brand" href="#">
-        <h1 class="text-center">SOC TOKEN APP</h1>
+        <h1 class="text-center">NFT Ticketing App</h1>
       </a>
     </div>
   </header>
-
-  <section class="container-fluid">
-    <div class="row min-vh-100">
-      <div class="col-sm-3" style="background-color:lavender;">
-      </div>
-      <div class="col-sm-6" style="background-color:lavenderblush;">
-
-        <div class="card">
-          <img class="card-img-top mx-auto d-block" src="https://pink-glamorous-cuckoo-175.mypinata.cloud/ipfs/QmYsTtGKMpUjuCLC7wXf65BXhSytobiAzprEywvTYT3NP2" alt="Card image" style="width:40%">
-          <div class="card-body">
-            <h4 class="card-title">SOC Remembrance Token</h4>
-            <p class="card-text">This token is created for SOC internal usage</p>
-            <div class="row">
-              <h5><strong>My Wallet : </strong></strongMy><small id="MyTokenWallet"></small></h5>
-              <h5><strong>Balance</strong>: <small id="MyTokenBalance"></small> SOC</h5>
-              <h4>Transfer</h4>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" id="MyTokenTransferAddress" placeholder="Address" />
-              </div>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" id="MyTokenTransferAmount" placeholder="Amount" />
-              </div>
-              <div class="input-group mb-3">
-                <button class="btn btn-primary" id="transferButton" type="button">Transfer</button>
+      <section class="container-fluid">
+        <div class="row min-vh-100">
+          <div class="col-sm-3" style="background-color:mediumpurple;"></div>
+          <div class="col-sm-6" style="background-color:lavender;">
+            <br />
+            <h2 class="text-center">Rock Music Concert 2023</h2>
+            <h4 class="text-center">Friday, 22 September 2023</h4>
+            <h6 class="text-center">Singapore Stadium</h6>
+            <div class="card">
+              <img class="card-img-top mx-auto d-block" id="MyTokenImage" src="img/NFT-Ticket-Thumbnail-800x800.jpg" alt="Card image" style="margin-top:10px;width:40%">
+              <div class="card-body">
+                <h4 class="card-title"></h4>
+                <p class="card-text"><span id="MyTokenDescription"></span></p>
+                <div class="row">
+                  <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                      <select id="getTicket" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                        <option selected>Show Ticket(s)</option>
+                        <option value="1">Gold 1st Row</option>
+                        <option value="2">Gold 2nd Row</option>
+                        <option value="3">Gold 3rd Row</option>
+                        <option value="4">Standard Section 1</option>
+                        <option value="5">Standard Section 2</option>
+                        <option value="6">Standard Section 3</option>
+                        <option value="7">Standard Section 4</option>
+                        <option value="8">Standard Section 5</option>
+                      </select>
+                    </div>
+                    <div class="col-2" ></div>
+                  </div>
+                  
+                  <!-- <h5><strong>Status</strong>: <small id="MyTokenOwner"></small></h5> -->
+                  
+                  <h5><strong>My Wallet : </strong></strongMy><small id="MyTokenWallet"></small></h5>
+                  <h5><strong>Balance</strong>: <small id="MyTokenBalance"></small> <small id="MyTokenSymbol"></small></h5>
+                  <h5>My Ticket(s):</h5>
+                  <div id="loading"></div>
+                  <div id="ticket"></div>
+                </div>
               </div>
             </div>
-          </div>
+    
+          </div>          
+          <div class="col-sm-3" style="background-color: mediumpurple;"></div>
         </div>
-      </div>
-      <div class="col-sm-3" style="background-color:lavender;"></div>
-    </div>
-  </section>
-  <!-- Footer -->
-  <footer class="fixed-bottom text-center text-lg-start bg-light text-muted">
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-      &copy; 2024 Copyright: Singapore Polytechnic
-    </div>
-  </footer>
-  <!-- Footer -->
-
+      </section>
+      
+      <footer class="fixed-bottom text-center text-lg-start bg-light text-muted">
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+          &copy; 2023 Copyright:
+          <a class="text-reset fw-bold" href="https://www.linkedin.com/in/kimhoe/">Lim Kim Hoe</a>
+        </div>
+      </footer>
+  
 </body>
 
 </html>

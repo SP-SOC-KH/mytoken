@@ -12,7 +12,7 @@ contract SOCToken is ERC20 {
     string public _symbol = "SOC";
     string public _imgURL = "https://pink-glamorous-cuckoo-175.mypinata.cloud/ipfs/QmYsTtGKMpUjuCLC7wXf65BXhSytobiAzprEywvTYT3NP2";
     uint8 public decimals = 4;
-    uint256 public INITIAL_SUPPLY = 100000000000;
+    uint256 public INITIAL_SUPPLY = 100000000000; //100 Billions
 
     constructor() public {
         _mint(msg.sender, INITIAL_SUPPLY);
